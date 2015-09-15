@@ -1,11 +1,11 @@
 <project xmlns="http://maven.apache.org/POM/4.0.0" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 http://maven.apache.org/xsd/maven-4.0.0.xsd">
     <modelVersion>4.0.0</modelVersion>
-    <artifactId>HTools</artifactId>
-    <groupId>io.github.htools</groupId>
+    <artifactId>JExperiments</artifactId>
+    <groupId>io.github.repir</groupId>
     <packaging>jar</packaging>
-    <name>HTools</name>
+    <name>JExperiments</name>
     <version>0.26-SNAPSHOT</version>
-    <url>http://htools.github.io</url>
+    <url></url>
    
     <properties>
         <project.build.sourceEncoding>UTF-8</project.build.sourceEncoding>
@@ -38,130 +38,10 @@
     </developers>
     
     <scm>
-        <connection>scm:git:git@github.com:HTools/HTools.git</connection>
-        <developerConnection>scm:git:git@github.com:HTools/HTools.git</developerConnection>
-        <url>git@github.com:HTools/HTools.git</url>
+        <connection>scm:git:git@github.com:RepIR/JExperiments.git</connection>
+        <developerConnection>scm:git:git@github.com:RepIR/JExperiments.git</developerConnection>
+        <url>git@github.com:RepIR/JExperiments.git</url>
     </scm>
-
-    <profiles>
-        <profile> 
-            <id>compilegrammar</id>
-            <build>
-                <plugins>
-                    <plugin>
-                        <groupId>org.antlr</groupId>
-                        <artifactId>antlr4-maven-plugin</artifactId>
-                        <version>4.3</version>
-                        <configuration>
-                            <sourceDirectory>${basedir}/src/main/java/io/github/repir/tools/search</sourceDirectory>
-                            <outputDirectory>${basedir}/src/main/java/io/github/repir/tools/search</outputDirectory>
-                        </configuration>
-                        <executions>
-                            <execution>
-                                <goals>
-                                    <goal>antlr4</goal>
-                                </goals>
-                            </execution>
-                        </executions>
-                    </plugin>
-                </plugins>
-            </build> 
-        </profile>        
-        <profile> <!-- create javadoc and source JAR's for release -->
-            <id>createrelease</id>
-            <build>
-                <plugins>
-                    <plugin>
-                        <groupId>org.codehaus.mojo</groupId>
-                        <artifactId>nbm-maven-plugin</artifactId>
-                        <version>3.14</version>
-                        <extensions>true</extensions>
-                    </plugin>
-                    <plugin>
-                        <groupId>org.codehaus.mojo</groupId>
-                        <artifactId>versions-maven-plugin</artifactId>
-                        <version>2.2</version>
-                        <configuration>
-                            <generateBackupPoms>false</generateBackupPoms>
-                        </configuration>
-                    </plugin>
-                    <plugin>                        
-                        <groupId>org.apache.maven.plugins</groupId>
-                        <artifactId>maven-source-plugin</artifactId>
-                        <version>2.4</version>
-                        <executions>
-                            <execution>
-                                <id>package-sources</id>
-                                <goals>
-                                    <goal>jar</goal>
-                                </goals>
-                            </execution>
-                        </executions>
-                    </plugin>
-                    <plugin>
-                        <artifactId>maven-deploy-plugin</artifactId>
-                        <version>2.8.2</version>
-                        <configuration>
-                            <file>${maven.compiler.target}</file>
-                            <serverId>oss.sonatype.org</serverId>
-                            <nexusUrl>https://oss.sonatype.org/</nexusUrl>
-                            <description>${project.version}</description>
-                            <autoReleaseAfterClose>true</autoReleaseAfterClose>
-                        </configuration>
-                    </plugin>
-                    <plugin>
-                        <groupId>org.apache.maven.plugins</groupId>
-                        <artifactId>maven-javadoc-plugin</artifactId>
-                        <version>2.10.3</version>
-                        <executions>
-                            <execution>
-                                <id>package-javadocs</id>
-                                <goals>
-                                    <goal>jar</goal>
-                                </goals>
-                            </execution>
-                        </executions>
-                    </plugin>
-<!--                    <plugin>
-                        <groupId>org.sonatype.plugins</groupId>
-                        <artifactId>nexus-staging-maven-plugin</artifactId>
-                        <version>1.6.2</version>
-                        <extensions>true</extensions>
-                        <configuration>
-                            <serverId>oss.sonatype.org</serverId>
-                            <nexusUrl>https://oss.sonatype.org/</nexusUrl>
-                            <description>${project.version}</description>
-                            <autoReleaseAfterClose>true</autoReleaseAfterClose>
-                        </configuration>
-                        <executions>
-                            <execution>
-                                <id>deploy-to-sonatype</id>
-                                <phase>deploy</phase>
-                                <goals>
-                                    <goal>deploy</goal>
-                                    goal>release</goal
-                                </goals>
-                            </execution>
-                        </executions>
-                    </plugin>-->
-                    <plugin>
-                        <groupId>org.apache.maven.plugins</groupId>
-                        <artifactId>maven-gpg-plugin</artifactId>
-                        <version>1.6</version>
-                        <executions>
-                            <execution>
-                                <id>sign-artifacts</id>
-                                <phase>verify</phase>
-                                <goals>
-                                    <goal>sign</goal>
-                                </goals>
-                            </execution>
-                        </executions>
-                    </plugin>
-                </plugins>
-            </build>
-        </profile>
-    </profiles>
     
     <dependencies>
         <dependency>
@@ -176,31 +56,6 @@
             <scope>test</scope>
         </dependency>
         <dependency>
-            <groupId>org.apache.hadoop</groupId>
-            <artifactId>hadoop-client</artifactId>
-        </dependency>
-        <dependency>
-            <groupId>org.apache.avro</groupId>
-            <artifactId>avro</artifactId>
-            <version>1.7.7</version>
-        </dependency>
-        <dependency>
-            <groupId>org.apache.avro</groupId>
-            <artifactId>avro-ipc</artifactId>
-            <version>1.7.7</version>
-        </dependency>
-        <dependency>
-            <groupId>commons-cli</groupId>
-            <artifactId>commons-cli</artifactId>
-            <version>1.3.1</version>
-        </dependency>
-        <dependency>
-            <groupId>org.apache.commons</groupId>
-            <artifactId>commons-compress</artifactId>
-            <version>1.9</version>
-            <type>jar</type>
-        </dependency>
-        <dependency>
             <groupId>org.apache.poi</groupId>
             <artifactId>poi</artifactId>
             <version>3.9</version>
@@ -211,117 +66,30 @@
             <version>3.9</version>
         </dependency>
         <dependency>
-            <groupId>com.google.guava</groupId>
-            <artifactId>guava</artifactId>
-            <version>15.0</version>
+            <groupId>io.github.htools</groupId>
+            <artifactId>HTools</artifactId>
         </dependency>
-        <dependency>
-            <groupId>org.codehaus.mojo</groupId>
-            <artifactId>wagon-maven-plugin</artifactId>
-            <version>1.0-beta-5</version>
-        </dependency>
-        <dependency>
-            <groupId>org.antlr</groupId>
-            <artifactId>antlr4</artifactId>
-            <version>4.3</version>
-        </dependency>
-        <dependency>
-            <groupId>it.unimi.dsi</groupId>
-            <artifactId>fastutil</artifactId>
-            <version>7.0.6</version>
-        </dependency>
-        <!--dependency>
-            <groupId>org.apache.hadoop</groupId>
-            <artifactId>hadoop-core</artifactId>
-        </dependency-->
-        <!--dependency>
-            <groupId>yahoo.yinst.hadoop_mvn_client</groupId>
-            <artifactId>hadoop-client</artifactId>
-        </dependency-->
-        <dependency>
-            <groupId>org.apache.commons</groupId>
-            <artifactId>commons-math3</artifactId>
-            <version>3.5</version>
-        </dependency>
-        <dependency>
-            <groupId>com.google.code.gson</groupId>
-            <artifactId>gson</artifactId>
-            <version>2.3.1</version>
-        </dependency>
-        <dependency>
-            <groupId>org.xerial.snappy</groupId>
-            <artifactId>snappy-java</artifactId>
-            <version>1.1.1.7</version>
-        </dependency>        
     </dependencies>
     
     <dependencyManagement>
         <dependencies>
             <dependency>
+                <groupId>io.github.htools</groupId>
+                <artifactId>HTools</artifactId>
+                <version>${project.version}</version>
+            </dependency>
+            <dependency>
                 <groupId>org.apache.hadoop</groupId>
                 <artifactId>hadoop-client</artifactId>
                 <version>${hadoop.version}</version>
             </dependency>
-            <dependency>
-                <groupId>${project.groupId}</groupId>
-                <artifactId>RepIRTools</artifactId>
-                <version>${project.version}</version>
-            </dependency>
-            <dependency>
-                <groupId>${project.groupId}</groupId>
-                <artifactId>RepIR</artifactId>
-                <version>${project.version}</version>
-            </dependency>
-            <dependency>
-                <groupId>${project.groupId}</groupId>
-                <artifactId>RepIRApps</artifactId>
-                <version>${project.version}</version>
-            </dependency>
-            <dependency>
-                <groupId>${project.groupId}</groupId>
-                <artifactId>RepIRProximity</artifactId>
-                <version>${project.version}</version>
-            </dependency>
         </dependencies> 
     </dependencyManagement>
-
-    <distributionManagement>
-        <snapshotRepository>
-            <id>oss.sonatype.org</id>
-            <url>https://oss.sonatype.org/content/repositories/snapshots</url>
-        </snapshotRepository>
-        <repository>
-            <id>oss.sonatype.org</id>
-            <url>https://oss.sonatype.org/service/local/staging/deploy/maven2/</url>
-        </repository>
-    </distributionManagement>
 
     <build>
         <sourceDirectory>${src.dir}</sourceDirectory>
         <testSourceDirectory>${test.dir}</testSourceDirectory>
         <plugins>
-            <!--plugin>
-                <groupId>org.apache.maven.plugins</groupId>
-                <artifactId>maven-shade-plugin</artifactId>
-                <version>2.1</version>
-                <executions>
-                    <execution>
-                        <phase>package</phase>
-                        <goals>
-                            <goal>shade</goal>
-                        </goals>
-                        <configuration>
-                            <shadedArtifactAttached>true</shadedArtifactAttached>
-                            <shadedClassifierName>fatjar</shadedClassifierName>
-                            <artifactSet>
-                                <excludes>
-                                    <exclude>org.apache.hadoop:*</exclude>
-                                </excludes>
-                            </artifactSet>
-                        </configuration>
-                    </execution>
-                </executions>
-            </plugin-->
             <plugin>
                 <groupId>org.apache.maven.plugins</groupId>
                 <artifactId>maven-compiler-plugin</artifactId>
@@ -359,7 +127,8 @@
                         <version>0.1.53</version>
                     </dependency>
                 </dependencies>
-            </plugin>      
+            </plugin> 
         </plugins>
-    </build>  
+    </build>
+    <description>Collections of tools not for distribution</description>
 </project>
